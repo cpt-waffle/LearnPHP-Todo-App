@@ -21,3 +21,13 @@ Route::get('/new', [
 ]);
 
 //Todos Routes
+Route::get('/todos', [
+  'uses' => 'TodosController@index',
+]);
+
+
+Route::group(['prefix' => 'todos'], function() {
+  Route::get('/', 'TodosController@index');
+  Route::get('/new', 'TodosController@new');
+});
+
