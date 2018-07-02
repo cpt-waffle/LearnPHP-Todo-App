@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Pages Routes
+Route::get('/new', [
+  'uses' => 'PagesController@new',
+]);
+
+//Todos Routes
