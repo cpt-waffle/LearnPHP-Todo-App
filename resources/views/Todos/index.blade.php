@@ -7,23 +7,29 @@
   <div>
     <ul class="list-group text-center" >
       @foreach ($todos as $todo)
-          <li class="list-group-item list-group-item-action w-75" id= "{{ $todo->id}} ">
+          <li class="list-group-item list-group-item-action w-75" id= "{{ $todo->id }} ">
             <div class="d-flex">
               <div class="p-2">
                 {{ $todo->todo }}
               </div>
               <div class="ml-auto p-2">
-                @if ( $todo->completed)
-                  <button type="button" class="btn btn-warning">Redo</button>
+                @if ( $todo->completed )
+                  <button type="button" class="btn btn-warning " disabled>Completed</button>
                 @else
-                  <button type="button" class="btn btn-success">Complete</button>
+                  <form action="/todos/completed/{{ $todo->id }}" method="POST">
+                    {{ csrf_field() }}
+                    <input type="submit" class="btn btn-success" value="Complete?"></input>
+                  </form>
                 @endif
-                <button type="button" class="btn btn-info">Edit</button>
-                <button type="button" class="btn btn-danger">Delete</button>
+                <a href="/todos/{{ $todo->id }}" class="btn btn-info">Edit</a>
+                <a href="/todos/delete/{{ $todo->id }}" class="btn btn-danger" >Delete</a>
               </div>
             </div>
           </li>
       @endforeach
     </ul>
+    <div>
+      <a href="/todos/new">Create New Item</a>
+    </div>
   </div>
 @stop

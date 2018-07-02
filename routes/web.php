@@ -24,5 +24,9 @@ Route::group(['prefix' => 'todos'], function() {
   Route::get('/', 'TodosController@index');
   Route::get('/new', 'TodosController@new');
   Route::post('/create', 'TodosController@create');
+  Route::get('/delete/{id}', 'TodosController@destroy');
+  Route::get('/{id}', 'TodosController@show');
+  Route::post('/{id}', 'TodosController@update');
+  Route::post('/completed/{id}', 'TodosController@completed');
 });
 
